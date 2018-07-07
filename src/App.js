@@ -3,6 +3,8 @@ import React from 'react'
 import './App.css'
 import SearchBook from './SearchBook'
 import ListBooks from './ListBooks'
+// import broweser router to be able to use it: https://youtu.be/Re8n-hmkWlY
+import { BrowserRouter } from 'react-router-dom';
 
 class BooksApp extends React.Component {
   state = {
