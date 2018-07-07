@@ -3,8 +3,8 @@ import React from 'react'
 import './App.css'
 import SearchBook from './SearchBook'
 import ListBooks from './ListBooks'
-// import broweser router to be able to use it: https://youtu.be/Re8n-hmkWlY
-import { BrowserRouter } from 'react-router-dom';
+// allow us to use Router component to change components displayed based on url
+import { Route } from 'react-router-dom';
 
 class BooksApp extends React.Component {
   state = {
@@ -20,8 +20,20 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-        <SearchBook />
-        <ListBooks />
+        {/* Render only SearchBook component for /search URL */}
+        <Route
+          exact path="/search"
+          render={ () => (
+            <SearchBook />
+           )}
+         />
+         {/* Render only ListBooks component for home url */}
+       <Route
+         exact path="/"
+         render={ () => (
+           <ListBooks />
+          )}
+         />
       </div>
     )
   }
