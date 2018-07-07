@@ -4,6 +4,10 @@ import {Link} from 'react-router-dom';
 
 class SearchBook extends React.Component {
   render(){
+
+    // Assign passed books property to make it easier to access
+    const books = this.props.books;
+
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -23,7 +27,7 @@ class SearchBook extends React.Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            <Book />
+            <Book book={books} />
           </ol>
         </div>
       </div>

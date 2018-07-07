@@ -3,7 +3,7 @@ import React from 'react'
 import './App.css'
 import SearchBook from './SearchBook'
 import ListBooks from './ListBooks'
-// allow us to use Router component to change components displayed based on url
+// Allow us to use Router component to change components displayed based on url
 import { Route } from 'react-router-dom';
 // Get all methods from BooksAPI, to fetch, post data to and from server
 import * as BooksAPI from './BooksAPI.js';
@@ -25,18 +25,25 @@ class BooksApp extends React.Component {
   }
 
   render() {
-    console.log(this.state.books);
     return (
       <div className="app">
         {/* Render only SearchBook component for /search URL */}
         <Route
           exact path="/search"
-          render={() => ( <SearchBook /> )}
+          render={() => (
+            <SearchBook
+              books={this.state.books}
+            />
+          )}
          />
          {/* Render only ListBooks component for home url */}
        <Route
          exact path="/"
-         render={() => ( <ListBooks /> )}
+         render={() => (
+           <ListBooks
+              books={this.state.books}
+           />
+         )}
          />
       </div>
     )
