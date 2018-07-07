@@ -19,16 +19,12 @@ class BooksApp extends React.Component {
         {/* Render only SearchBook component for /search URL */}
         <Route
           exact path="/search"
-          render={ () => (
-            <SearchBook />
-           )}
+          render={() => ( <SearchBook /> )}
          />
          {/* Render only ListBooks component for home url */}
        <Route
          exact path="/"
-         render={ () => (
-           <ListBooks />
-          )}
+         render={() => ( <ListBooks /> )}
          />
       </div>
     )
