@@ -51,7 +51,7 @@ class BooksApp extends React.Component {
   // If the book is in the state, just update its "shelf" property.
   // Else then this is insertion of new book to the shelf.
   updateShelf = (book, bookshelfSelected ) => {
-    BooksAPI.update(book, bookshelfSelected);
+    BooksAPI.update(book, bookshelfSelected).then((resp) => (console.log(resp)));
 
     // Check if this is insertion of new book to shelves,
     // or if it is updating of exisiting book on shelf.
@@ -69,8 +69,9 @@ class BooksApp extends React.Component {
           this.switchBookshelf(book, bookshelfSelected);
         }
       } else {
-        // // TODO: Handle insertion of new book to state
-        console.log("Inserting a new book to state");
+        // // TODO: Handle insertion of new book to state,
+        // should be pushed to the array somehow
+        console.log("The book did not match");
       }
     }
   }
