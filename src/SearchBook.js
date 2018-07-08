@@ -2,6 +2,7 @@ import React from 'react'
 import Book from './Book'
 import {Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
+import * as BooksAPI from './BooksAPI.js'
 
 class SearchBook extends React.Component {
   // Now you will know if the app brakes because of incorrect props passed to the component.
@@ -24,11 +25,37 @@ class SearchBook extends React.Component {
   // The method sets new "query" value in the "state".
   // Then the input is re-rendered with the new "state" as input value.
   updateQuery = (queryFromInput) => {
-        this.setState({query: queryFromInput})
-      }
+
+    console.log("Query from Inpit " + queryFromInput);
+    // Check if the queryFromInput is in the serach terms.
+    // If it is then make a fetch request and then update uqery
+    this.setState({query: queryFromInput})
+
+    // If the queryFromInput is not empty string make a request to server
+    if (queryFromInput !== "") {
+      BooksAPI.search(queryFromInput).then((books) => {
+        // If the sever has match for the query,
+        // it will return array.
+        if (books instanceof Array) {
+          // Add books to state.
+          this.setState({searchableBooks: books})
+        } else {
+          // If the server did not found match,
+          // it will return something else,
+          // so just empty the searchableBooks.
+          console.log(books);
+          this.setState({searchableBooks: []})
+        }
+
+      })
+    } else {
+      // If the queryFromInput is empty string, then just clear searchableBooks
+      this.setState({searchableBooks: []})
+    }
+  }
 
   render() {
-
+    console.log(this.state.searchableBooks);
     const books = this.state.searchableBooks;
     // Assign passed updateShelf property to make it easier to access
     const updateShelf = this.props.updateShelf;
