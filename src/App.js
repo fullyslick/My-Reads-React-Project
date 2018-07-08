@@ -24,6 +24,22 @@ class BooksApp extends React.Component {
        this.setState({ books: responseWithBooks }));
   }
 
+  // Swicthes (updates) the bookshelf of an exisiting in the "books", book
+  switchBookshelf = (book, bookshelfSelected) => {
+    this.setState( (oldState) => (
+      // Map over all books in the old state.
+      // When the book that changes its shelf is found,
+      // Just change its shelf property.
+      oldState.books.map( (singleBook) => {
+            if (singleBook.id === book.id) {
+              singleBook.shelf = bookshelfSelected
+              return singleBook
+            } else {
+              return singleBook
+            }
+          })));
+   }
+
   // Post update to server. // TODO: Handle insertion of new book
   // If the book is in the state, just update its "shelf" property.
   // Else then this is insertion of new book to the shelf.
