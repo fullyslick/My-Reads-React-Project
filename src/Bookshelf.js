@@ -1,7 +1,15 @@
 import React from 'react'
 import Book from './Book'
+import PropTypes from 'prop-types'
 
 class Bookshelf extends React.Component {
+  // Here you define what the props passed to the component type should be,
+  // and wheter the property is required in order to work the Bookshelf component.
+  // If these props are not passed a message will be logged in console.
+  // Now you will know if the app brakes because of incorrect props passed to the component.
+  static propTypes = {
+    books: PropTypes.array.isRequired
+  }
 
   render(){
     // Assign passed properties to consts to make it easier to access

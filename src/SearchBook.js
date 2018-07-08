@@ -1,8 +1,14 @@
 import React from 'react'
 import Book from './Book'
-import {Link} from 'react-router-dom';
+import {Link} from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 class SearchBook extends React.Component {
+  // Now you will know if the app brakes because of incorrect props passed to the component.
+  static propTypes = {
+    books: PropTypes.array.isRequired
+  }
+
   render(){
 
     // Assign passed books property to make it easier to access

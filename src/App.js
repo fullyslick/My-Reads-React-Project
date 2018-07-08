@@ -24,6 +24,10 @@ class BooksApp extends React.Component {
        this.setState({ books: responseWithBooks }));
   }
 
+  // Post update to server. // TODO:
+  // If the book is in the state, just update its "shelf" property.
+  // Else then this is insertion of new book to the shelf.
+
   render() {
     return (
       <div className="app">
