@@ -5,15 +5,14 @@ class Book extends React.Component {
   // Now you will know if the app brakes because of incorrect props passed to the component.
   static propTypes = {
     book: PropTypes.object.isRequired,
-    updateShelf: PropTypes.func.isRequired
+    updateShelf: PropTypes.func.isRequired,
+    allBooksOnShelves: PropTypes.array.isRequired
   }
 
   // Hold the state of the select input.
   state = {
-    // If the "book" has "shelf" property,
-    // use that property to display it bt default on options,
-    // Else - display "none" option as default. ( This is when Book is called from SearchBook )
-    selectValue: this.props.book.shelf || "none"
+    // Holds the default shelf displayed in options
+    selectValue: ""
   }
 
   // Updates the select input with the value selected by the user.
@@ -23,6 +22,25 @@ class Book extends React.Component {
     this.setState({selectValue: event.target.value});
 
     this.props.updateShelf(this.props.book, event.target.value);
+  }
+
+  // When Book component is mounted,
+  // Check if the book is in the shelves.
+  // Filter out the book from allBooksOnShelves.
+  // If it is change the selectValue to the shelf from shelves.
+  // Else set selectValue to "none"
+  componentDidMount(){
+   let bookInShelf = this.props.allBooksOnShelves.filter( book => book.id === this.props.book.id);
+
+   // The array bookInShelf should be 1 element long,
+   // if the book displayed is in the shelves.
+   if (bookInShelf.length === 1) {
+     // so set the selectValue to the one of the shelf of the book.
+     this.setState({selectValue: bookInShelf[0]["shelf"]})
+   } else {
+     // book is not in shelves so add deafault "none" selectValue
+     this.setState({selectValue: "none"})
+   }
   }
 
   render() {

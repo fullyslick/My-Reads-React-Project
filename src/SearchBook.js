@@ -75,7 +75,7 @@ class SearchBook extends React.Component {
       <div className="search-books-results">
         <ol className="books-grid">
           {books.map( (book) => (
-            <Book key={book.id} book={book} updateShelf={updateShelf} />
+            <Book key={book.id} book={book} updateShelf={updateShelf}  allBooksOnShelves={this.props.books}/>
           ))}
         </ol>
       </div>
