@@ -13,41 +13,57 @@ class SearchBook extends React.Component {
   state = {
     // sreachableBooks by default is empty array.
     // It is populated thanks to fetch request made after first rendering.
-    sreachableBooks : [],
+    searchableBooks: [],
     // query that will be used to search books,
     // by default it is empty.
     query: ''
   }
 
-  render(){
+  // Updates the "state".
+  // (queryFromInput) is passed from JSX template below, this is the value from the input field.
+  // The method sets new "query" value in the "state".
+  // Then the input is re-rendered with the new "state" as input value.
+  updateQuery = (queryFromInput) => {
+        this.setState({query: queryFromInput})
+      }
 
-    // Assign passed books property to make it easier to access
-    const books = this.props.books;
+  render() {
+
+    const books = this.state.searchableBooks;
+    // Assign passed updateShelf property to make it easier to access
     const updateShelf = this.props.updateShelf;
 
-    return (
-      <div className="search-books">
-        <div className="search-books-bar">
-          <Link to="/" className="close-search">Close</Link>
-          <div className="search-books-input-wrapper">
-            {/*
+    return (<div className="search-books">
+      <div className="search-books-bar">
+        <Link to="/" className="close-search">Close</Link>
+        <div className="search-books-input-wrapper">
+          {/*
               NOTES: The search from BooksAPI is limited to a particular set of search terms.
               You can find these search terms here:
               https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
 
               However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
               you don't find a specific author or title. Every search is limited by search terms.
-            */}
-            <input type="text" placeholder="Search by title or author"/>
+            */
+          }
+          <input type="text" placeholder="Search by title or author"
+            // Note that the value attribute is set on the <input> element.
 
-          </div>
-        </div>
-        <div className="search-books-results">
-          <ol className="books-grid">
-            <Book book={books} updateShelf={updateShelf} />
-          </ol>
+            // Our displayed value will always be the value in the component's state,
+
+            // making our state the "single source of truth."
+            value={this.state.query}
+            // onChange invokes function that invokes updateQuery with the value of the input as argument
+            onChange={(event) => this.updateQuery(event.target.value)}/>
+
         </div>
       </div>
+      <div className="search-books-results">
+        <ol className="books-grid">
+          {/* <Book book={books} updateShelf={updateShelf} /> */}
+        </ol>
+      </div>
+    </div>
     )
   }
 }
