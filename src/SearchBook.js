@@ -10,6 +10,15 @@ class SearchBook extends React.Component {
     updateShelf: PropTypes.func.isRequired
   }
 
+  state = {
+    // sreachableBooks by default is empty array.
+    // It is populated thanks to fetch request made after first rendering.
+    sreachableBooks : [],
+    // query that will be used to search books,
+    // by default it is empty.
+    query: ''
+  }
+
   render(){
 
     // Assign passed books property to make it easier to access
