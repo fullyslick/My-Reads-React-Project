@@ -4,9 +4,9 @@ import './App.css'
 import SearchBook from './SearchBook'
 import ListBooks from './ListBooks'
 // Allow us to use Router component to change components displayed based on url
-import { Route } from 'react-router-dom';
+import { Route } from 'react-router-dom'
 // Get all methods from BooksAPI, to fetch, post data to and from server
-import * as BooksAPI from './BooksAPI.js';
+import * as BooksAPI from './BooksAPI.js'
 
 
 class BooksApp extends React.Component {

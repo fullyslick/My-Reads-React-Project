@@ -42,7 +42,6 @@ class SearchBook extends React.Component {
           // If the server did not found match,
           // it will return something else,
           // so just empty the searchableBooks.
-          console.log(books);
           this.setState({searchableBooks: []})
         }
 
