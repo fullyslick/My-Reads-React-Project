@@ -24,56 +24,22 @@ class BooksApp extends React.Component {
        this.setState({ books: responseWithBooks }));
   }
 
-  // Swicthes (updates) the bookshelf of an exisiting in the "books", book
-  switchBookshelf = (book, bookshelfSelected) => {
-    this.setState( (oldState) => (
-      // Map over all books in the old state.
-      // When the book that changes its shelf is found,
-      // Just change its shelf property.
-      oldState.books.map( (singleBook) => {
-            if (singleBook.id === book.id) {
-              singleBook.shelf = bookshelfSelected
-              return singleBook
-            } else {
-              return singleBook
-            }
-          })));
-   }
+  // Post update to server.
+  // Update the state with the changed shelf of the book.
+  updateShelf = (book, bookshelfSelected) => {
+      // First update the server
+      BooksAPI.update(book, bookshelfSelected).then(() => {
 
-  // Removes existing book from "books", due to selection of "none" option
-  removeFromBookshelves = (book) => {
-  this.setState( (oldState) => ( {
-    books: oldState.books.filter( (singleBook) => singleBook.id !== book.id)
-    }));
-  }
+      // Update the shelf of the book that is selected.
+      book.shelf = bookshelfSelected;
 
-  // Post update to server. // TODO: Handle insertion of new book
-  // If the book is in the state, just update its "shelf" property.
-  // Else then this is insertion of new book to the shelf.
-  updateShelf = (book, bookshelfSelected ) => {
-    BooksAPI.update(book, bookshelfSelected).then((resp) => (console.log(resp)));
-
-    // Check if this is insertion of new book to shelves,
-    // or if it is updating of exisiting book on shelf.
-    // Loop over all books on the shelf...
-    for (var i = 0; i < this.state.books.length; i++) {
-      // .. if the book that is updating exist ...
-      if (this.state.books[i].id === book.id) {
-        //.. check if the bookshelf selected is "none"..
-        if(bookshelfSelected === "none"){
-          //.. if its "none", remove the book from bookshelves..
-          this.removeFromBookshelves(book);
-        } else {
-          //... else the bookshelfSelected is ["wantToRead", "currentlyReading", "read"]
-          // so just switch shelf.
-          this.switchBookshelf(book, bookshelfSelected);
-        }
-      } else {
-        // // TODO: Handle insertion of new book to state,
-        // should be pushed to the array somehow
-        console.log("The book did not match");
-      }
-    }
+      // update the state with the change of the book's shelf
+      this.setState( oldState => ({
+        // books = all the books from previous state without the changed one.
+        // Then just add (concat) the changed one to the newly returned array.
+        books: oldState.books.filter( oldStateBook => oldStateBook.id !== book.id ).concat([book])
+      }))
+    })
   }
 
   render() {
