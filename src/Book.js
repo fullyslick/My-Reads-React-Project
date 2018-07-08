@@ -4,7 +4,8 @@ import PropTypes from 'prop-types'
 class Book extends React.Component {
   // Now you will know if the app brakes because of incorrect props passed to the component.
   static propTypes = {
-    book: PropTypes.object.isRequired
+    book: PropTypes.object.isRequired,
+    updateShelf: PropTypes.func.isRequired
   }
 
   // Hold the state of the select input.
@@ -13,10 +14,12 @@ class Book extends React.Component {
   }
 
   // Updates the select input with the value selected by the user.
-  // // TODO: Invokes updateShelf method from main component (App.js),
+  // Invokes updateShelf method from main component (App.js),
   // to update this books shelf in the main state.
   handleSelectChange = (event) => {
     this.setState({ selectValue: event.target.value });
+
+    this.props.updateShelf(this.props.book, event.target.value);
   }
 
   render(){

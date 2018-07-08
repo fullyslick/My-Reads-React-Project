@@ -6,13 +6,15 @@ import PropTypes from 'prop-types'
 class SearchBook extends React.Component {
   // Now you will know if the app brakes because of incorrect props passed to the component.
   static propTypes = {
-    books: PropTypes.array.isRequired
+    books: PropTypes.array.isRequired,
+    updateShelf: PropTypes.func.isRequired
   }
 
   render(){
 
     // Assign passed books property to make it easier to access
     const books = this.props.books;
+    const updateShelf = this.props.updateShelf;
 
     return (
       <div className="search-books">
@@ -33,7 +35,7 @@ class SearchBook extends React.Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            <Book book={books} />
+            <Book book={books} updateShelf={updateShelf} />
           </ol>
         </div>
       </div>

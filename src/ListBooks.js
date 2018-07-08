@@ -9,13 +9,15 @@ class ListBooks extends React.Component {
   // Now you will know if the app brakes because of incorrect props,
   // passed to the component.
   static propTypes = {
-    books: PropTypes.array.isRequired
+    books: PropTypes.array.isRequired,
+    updateShelf: PropTypes.func.isRequired
   }
 
   render() {
 
     // Assign passed books property to make it easier to access
     const books = this.props.books;
+    const updateShelf = this.props.updateShelf;
 
     return (
     <div className="list-books">
@@ -24,9 +26,9 @@ class ListBooks extends React.Component {
       </div>
       <div className="list-books-content">
         <div>
-        <Bookshelf bookshelfTitle="Want to Read" shelf="wantToRead" books={books} />
-        <Bookshelf bookshelfTitle="Currently Reading" shelf="currentlyReading" books={books} />
-        <Bookshelf bookshelfTitle="Read" shelf="read" books={books} />
+        <Bookshelf bookshelfTitle="Want to Read" shelf="wantToRead" books={books} updateShelf={updateShelf} />
+        <Bookshelf bookshelfTitle="Currently Reading" shelf="currentlyReading" books={books} updateShelf={updateShelf} />
+        <Bookshelf bookshelfTitle="Read" shelf="read" books={books} updateShelf={updateShelf} />
         </div>
       </div>
       <div className="open-search">

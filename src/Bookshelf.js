@@ -8,7 +8,8 @@ class Bookshelf extends React.Component {
   // If these props are not passed a message will be logged in console.
   // Now you will know if the app brakes because of incorrect props passed to the component.
   static propTypes = {
-    books: PropTypes.array.isRequired
+    books: PropTypes.array.isRequired,
+    updateShelf: PropTypes.func.isRequired
   }
 
   render(){
@@ -18,6 +19,8 @@ class Bookshelf extends React.Component {
     const bookshelfTitle = this.props.bookshelfTitle;
     // The array that holds only the books in that specific bookshelf
     const booksOnThatShelf = books.filter( (book) => book.shelf === shelf );
+    // The method that will update books
+    const updateShelf = this.props.updateShelf;
 
     return (
       <div className="bookshelf">
@@ -25,7 +28,7 @@ class Bookshelf extends React.Component {
         <div className="bookshelf-books">
           <ol className="books-grid">
             {booksOnThatShelf.map( (book) => (
-              <Book key={book.id} book={book} />
+              <Book key={book.id} book={book} updateShelf={updateShelf} />
             ))}
           </ol>
         </div>

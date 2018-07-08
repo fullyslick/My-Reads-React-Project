@@ -24,9 +24,34 @@ class BooksApp extends React.Component {
        this.setState({ books: responseWithBooks }));
   }
 
-  // Post update to server. // TODO:
+  // Post update to server. // TODO: Handle insertion of new book
   // If the book is in the state, just update its "shelf" property.
   // Else then this is insertion of new book to the shelf.
+  updateShelf = (book, bookshelfSelected ) => {
+    BooksAPI.update(book, bookshelfSelected);
+
+    // Check if this is insertion of new book to shelves,
+    // or if it is updating of exisiting book on shelf.
+    // Loop over all books on the shelf...
+    for (var i = 0; i < this.state.books.length; i++) {
+      // .. if the book that is updating exist ...
+      if (this.state.books[i].id === book.id) {
+        //.. check if the bookshelf selected is "none"..
+        if(bookshelfSelected === "none"){
+          console.log('None state called');
+          //.. if its "none", remove the book from bookshelves..
+          this.removeFromBookshelves(book);
+        } else {
+          //... else the bookshelfSelected is ["wantToRead", "currentlyReading", "read"]
+          // so just switch shelf.
+          this.switchBookshelf(book, bookshelfSelected);
+        }
+      } else {
+        // // TODO: Handle insertion of new book to state
+        console.log("Inserting a new book to state");
+      }
+    }
+  }
 
   render() {
     return (
@@ -37,6 +62,7 @@ class BooksApp extends React.Component {
           render={() => (
             <SearchBook
               books={this.state.books}
+              updateShelf={this.updateShelf}
             />
           )}
          />
@@ -46,6 +72,7 @@ class BooksApp extends React.Component {
          render={() => (
            <ListBooks
               books={this.state.books}
+              updateShelf={this.updateShelf}
            />
          )}
          />
