@@ -40,6 +40,13 @@ class BooksApp extends React.Component {
           })));
    }
 
+  // Removes existing book from "books", due to selection of "none" option
+  removeFromBookshelves = (book) => {
+  this.setState( (oldState) => ( {
+    books: oldState.books.filter( (singleBook) => singleBook.id !== book.id)
+    }));
+  }
+
   // Post update to server. // TODO: Handle insertion of new book
   // If the book is in the state, just update its "shelf" property.
   // Else then this is insertion of new book to the shelf.
@@ -54,7 +61,6 @@ class BooksApp extends React.Component {
       if (this.state.books[i].id === book.id) {
         //.. check if the bookshelf selected is "none"..
         if(bookshelfSelected === "none"){
-          console.log('None state called');
           //.. if its "none", remove the book from bookshelves..
           this.removeFromBookshelves(book);
         } else {
