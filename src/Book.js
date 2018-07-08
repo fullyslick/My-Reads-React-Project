@@ -7,8 +7,19 @@ class Book extends React.Component {
     book: PropTypes.object.isRequired
   }
 
-  render(){
+  // Hold the state of the select input.
+  state = {
+    selectValue : this.props.book.shelf
+  }
 
+  // Updates the select input with the value selected by the user.
+  // // TODO: Invokes updateShelf method from main component (App.js),
+  // to update this books shelf in the main state.
+  handleSelectChange = (event) => {
+    this.setState({ selectValue: event.target.value });
+  }
+
+  render(){
     // Assign passed books property to make it easier to access
     const book = this.props.book;
 
@@ -18,8 +29,7 @@ class Book extends React.Component {
           <div className="book-top">
             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage:`url(${book.imageLinks.thumbnail})` }}></div>
             <div className="book-shelf-changer">
-              {/* // TODO: Replace defaultValue with value */}
-              <select defaultValue={book.shelf}>
+              <select value={this.state.selectValue} onChange={this.handleSelectChange} >
                 <option value="move" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>
