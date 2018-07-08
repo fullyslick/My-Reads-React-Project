@@ -26,7 +26,6 @@ class SearchBook extends React.Component {
   // Then the input is re-rendered with the new "state" as input value.
   updateQuery = (queryFromInput) => {
 
-    console.log("Query from Inpit " + queryFromInput);
     // Check if the queryFromInput is in the serach terms.
     // If it is then make a fetch request and then update uqery
     this.setState({query: queryFromInput})
@@ -55,7 +54,6 @@ class SearchBook extends React.Component {
   }
 
   render() {
-    console.log(this.state.searchableBooks);
     const books = this.state.searchableBooks;
     // Assign passed updateShelf property to make it easier to access
     const updateShelf = this.props.updateShelf;
@@ -64,20 +62,9 @@ class SearchBook extends React.Component {
       <div className="search-books-bar">
         <Link to="/" className="close-search">Close</Link>
         <div className="search-books-input-wrapper">
-          {/*
-              NOTES: The search from BooksAPI is limited to a particular set of search terms.
-              You can find these search terms here:
-              https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-
-              However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-              you don't find a specific author or title. Every search is limited by search terms.
-            */
-          }
           <input type="text" placeholder="Search by title or author"
             // Note that the value attribute is set on the <input> element.
-
             // Our displayed value will always be the value in the component's state,
-
             // making our state the "single source of truth."
             value={this.state.query}
             // onChange invokes function that invokes updateQuery with the value of the input as argument
@@ -87,7 +74,9 @@ class SearchBook extends React.Component {
       </div>
       <div className="search-books-results">
         <ol className="books-grid">
-          {/* <Book book={books} updateShelf={updateShelf} /> */}
+          {books.map( (book) => (
+            <Book key={book.id} book={book} updateShelf={updateShelf} />
+          ))}
         </ol>
       </div>
     </div>
