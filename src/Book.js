@@ -10,7 +10,10 @@ class Book extends React.Component {
 
   // Hold the state of the select input.
   state = {
-    selectValue : this.props.book.shelf
+    // If the "book" has "shelf" property,
+    // use that property to display it bt default on options,
+    // Else - display "none" option as default. ( This is when Book is called from SearchBook )
+    selectValue : this.props.book.shelf || "none"
   }
 
   // Updates the select input with the value selected by the user.
