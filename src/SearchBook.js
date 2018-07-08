@@ -13,10 +13,10 @@ class SearchBook extends React.Component {
 
   state = {
     // sreachableBooks by default is empty array.
-    // It is populated thanks to fetch request made after first rendering.
+    // It is populated with fecth request when query is changed.
     searchableBooks: [],
     // query that will be used to search books,
-    // by default it is empty.
+    // by default it is empty string.
     query: ''
   }
 
@@ -44,7 +44,6 @@ class SearchBook extends React.Component {
           // so just empty the searchableBooks.
           this.setState({searchableBooks: []})
         }
-
       })
     } else {
       // If the queryFromInput is empty string, then just clear searchableBooks
@@ -62,20 +61,18 @@ class SearchBook extends React.Component {
         <Link to="/" className="close-search">Close</Link>
         <div className="search-books-input-wrapper">
           <input type="text" placeholder="Search by title or author"
-            // Note that the value attribute is set on the <input> element.
-            // Our displayed value will always be the value in the component's state,
-            // making our state the "single source of truth."
+            /** Note that the value attribute is set on the <input> element.
+            * Our displayed value will always be the value in the component's state,
+            * making our state the "single source of truth."
+            */
             value={this.state.query}
             // onChange invokes function that invokes updateQuery with the value of the input as argument
             onChange={(event) => this.updateQuery(event.target.value)}/>
-
         </div>
       </div>
       <div className="search-books-results">
         <ol className="books-grid">
-          {books.map( (book) => (
-            <Book key={book.id} book={book} updateShelf={updateShelf}  allBooksOnShelves={this.props.books}/>
-          ))}
+          {books.map((book) => (<Book key={book.id} book={book} updateShelf={updateShelf} allBooksOnShelves={this.props.books}/>))}
         </ol>
       </div>
     </div>

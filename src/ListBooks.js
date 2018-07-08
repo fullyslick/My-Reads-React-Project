@@ -19,23 +19,21 @@ class ListBooks extends React.Component {
     const books = this.props.books;
     const updateShelf = this.props.updateShelf;
 
-    return (
-    <div className="list-books">
+    return (<div className="list-books">
       <div className="list-books-title">
         <h1>MyReads</h1>
       </div>
       <div className="list-books-content">
         <div>
-        <Bookshelf bookshelfTitle="Want to Read" shelf="wantToRead" books={books} updateShelf={updateShelf} />
-        <Bookshelf bookshelfTitle="Currently Reading" shelf="currentlyReading" books={books} updateShelf={updateShelf} />
-        <Bookshelf bookshelfTitle="Read" shelf="read" books={books} updateShelf={updateShelf} />
+          <Bookshelf bookshelfTitle="Want to Read" shelf="wantToRead" books={books} updateShelf={updateShelf}/>
+          <Bookshelf bookshelfTitle="Currently Reading" shelf="currentlyReading" books={books} updateShelf={updateShelf}/>
+          <Bookshelf bookshelfTitle="Read" shelf="read" books={books} updateShelf={updateShelf}/>
         </div>
       </div>
       <div className="open-search">
         <Link to="/search">Search</Link>
       </div>
-    </div>
-   )
+    </div>)
   }
 }
 

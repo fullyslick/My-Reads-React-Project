@@ -29,18 +29,19 @@ class Book extends React.Component {
   // Filter out the book from allBooksOnShelves.
   // If it is change the selectValue to the shelf from shelves.
   // Else set selectValue to "none"
-  componentDidMount(){
-   let bookInShelf = this.props.allBooksOnShelves.filter( book => book.id === this.props.book.id);
+  componentDidMount() {
+    let bookInShelf = this.props.allBooksOnShelves.filter(book => book.id === this.props.book.id);
 
-   // The array bookInShelf should be 1 element long,
-   // if the book displayed is in the shelves.
-   if (bookInShelf.length === 1) {
-     // so set the selectValue to the one of the shelf of the book.
-     this.setState({selectValue: bookInShelf[0]["shelf"]})
-   } else {
-     // book is not in shelves so add deafault "none" selectValue
-     this.setState({selectValue: "none"})
-   }
+    // The array bookInShelf should be 1 element long,
+    // if the book displayed is in the shelves.
+    if (bookInShelf.length === 1) {
+      // so set the selectValue to the one of the shelf of the book.
+      this.setState({selectValue: bookInShelf[0]["shelf"]
+      })
+    } else {
+      // book is not in shelves so add deafault "none" selectValue
+      this.setState({selectValue: "none"})
+    }
   }
 
   render() {
