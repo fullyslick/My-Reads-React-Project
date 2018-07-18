@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="example.png" alt="My Reads Project Photo Example" />
+</p>
+
 # Project Overview
 
 This is my submission for [Udacity's Front-End Web Developer Nanodegree](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001). The project is a web-based application built on React. The web application allows the user to select and categorize books she/he has read, is currently reading, or want to read.
