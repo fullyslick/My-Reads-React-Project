@@ -8,7 +8,7 @@
 This is my submission for [Udacity's Front-End Web Developer Nanodegree](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001). The project is a web-based application built on React. The web application allows the user to select and categorize books she/he has read, is currently reading, or want to read.
 
 ## How to run.
-You can check the live version [here](https://fullyslick.github.io/Neighborhood-Map/)
+You can check the live version [here](https://fullyslick.github.io/My-Reads-React-Project/)
 or:
 
 1. Download or clone the project from repository.
