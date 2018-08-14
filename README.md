@@ -2,11 +2,15 @@
   <img src="example.png" alt="My Reads Project Photo Example" />
 </p>
 
+
 # Project Overview
 
 This is my submission for [Udacity's Front-End Web Developer Nanodegree](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001). The project is a web-based application built on React. The web application allows the user to select and categorize books she/he has read, is currently reading, or want to read.
 
 ## How to run.
+You can check the live version [here](https://fullyslick.github.io/Neighborhood-Map/)
+or:
+
 1. Download or clone the project from repository.
 
 2. Download and install [Node.js](https://nodejs.org/en/download/) (if you do not have it already installed).
